@@ -1,7 +1,8 @@
 <?php
 session_start();
 if (isset($_POST['register'])) {
-    // Collect or retrieve form data
+
+    // Collect or retrieve form data(user input)
     $firstName = $_POST['first_name'];
     $lastName = $_POST['last_name'];
     $email = $_POST['email'];
@@ -21,6 +22,7 @@ if (isset($_POST['register'])) {
         $tmp_img = $_FILES['profile_image']['tmp_name'];
         $upload_dir = 'uploads/';
 
+        // Ensure the uploads directory exists
         $new_img_name = '';
         if (!empty($img) && !empty($tmp_img)) {
             $new_img_name = time() . '_' . basename($img);
@@ -39,6 +41,7 @@ if (isset($_POST['register'])) {
             'profile_image' => $new_img_name
         ];
 
+        //Redirect to dashboard after successful validation of user inputs
         header("Location: dashboard.php");
         exit();
     }
