@@ -12,34 +12,37 @@ if (isset($_POST['register'])) {
     if (empty($firstName) || empty($lastName) || empty($email) || empty($password) || empty($confirm_pass)) {
         echo "All fields are required!";
         exit();
-    }
-
-    if ($password === '' || $password !== $confirm_pass) {
+    } elseif ($password !== $confirm_pass) {
         echo "Passwords do not match!";
         exit();
+    } else {
+        // Handle file upload
+        $img = $_FILES['profile_image']['name'];
+        $tmp_img = $_FILES['profile_image']['tmp_name'];
+        $upload_dir = 'uploads/';
+
+        $new_img_name = '';
+        if (!empty($img) && !empty($tmp_img)) {
+            $new_img_name = time() . '_' . basename($img);
+            if (!move_uploaded_file($tmp_img, $upload_dir . $new_img_name)) {
+                echo "Failed to upload image!";
+                exit();
+            }
+        }
+
+        //Saving user data in session
+        $_SESSION['user'] = [
+            'first_name' => $firstName,
+            'last_name' => $lastName,
+            'email' => $email,
+            'password' => $password,
+            'profile_image' => $new_img_name
+        ];
+
+        header("Location: dashboard.php");
+        exit();
     }
-
-    // Handle file upload
-    $img = $_FILES['profile_image']['name'];
-    $tmp_img = $_FILES['profile_image']['tmp_name'];
-
-    $new_img_name = time() . '_' . $img;
-    move_uploaded_file($tmp_img, "uploads/" . $new_img_name);
-
-
-    //Saving user data in session
-    $_SESSION['user'] = [
-        'first_name' => $firstName,
-        'last_name' => $lastName,
-        'email' => $email,
-        'password' => $password,
-        'profile_image' => $new_img_name
-    ];
-
-    header("Location: dashboard.php");
-    exit();
 }
-
 ?>
 
 

@@ -4,9 +4,23 @@ if (!isset($_SESSION['user'])) {
     header("Location: login.php");
     exit();
 }
-echo "<img src='uploads/" . $_SESSION['user']['profile_image'] . "' width='120'>";
-?>
+date_default_timezone_set("Africa/Accra");
+$hour = date("H"); // gets current hour (00–23)
 
+switch (true) {
+
+    case ($hour < 12):
+        $greeting = "Good Morning";
+        break;
+
+    case ($hour < 18):
+        $greeting = "Good Afternoon";
+        break;
+
+    default:
+        $greeting = "Good Evening";
+}
+?>
 
 
 <!DOCTYPE html>
@@ -48,16 +62,20 @@ echo "<img src='uploads/" . $_SESSION['user']['profile_image'] . "' width='120'>
             <div class="navs">
 
                 <ul class="nav-list">
+                    <li><?php echo "<img src='uploads/" . $_SESSION['user']['profile_image'] . "' class='prof-img' alt='Profile Image'>"; ?></li>
                     <li><a href="./logout.php" id="log">Logout</a></li>
-
                 </ul>
             </div>
         </div>
     </header>
-
+    <h1 class="greeting">
+        <?php
+        echo $greeting . ", " . $_SESSION['user']['first_name'];
+        ?><br>
+    </h1>
     <section class="welcome">
-        <h1>Hi, <?php echo $_SESSION['user']['first_name'];
-             ?>!!<br>
+
+        <h1 class="welcome-head">
             Welcome to<br>
             <span class="sect-h2">
                 Ichiraku's Kitchen

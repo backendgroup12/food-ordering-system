@@ -258,6 +258,20 @@ body {
   padding: 40px;
 }
 
+.prof-img {
+   width: 30px;
+   height: 30px;
+  border-radius: 50px;
+}
+
+.greeting {
+  background-color: #ffcebb;
+  padding: 10px;
+  display: flex;
+  align-items: center;
+  margin-bottom: -1px;
+}
+
 .sect-h2, .prod-head {
   color: #ff5a1e;
   font-size: 40px;

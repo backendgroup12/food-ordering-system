@@ -1,24 +1,27 @@
 <?php
 session_start();
+
+$error = "";
+
 if (isset($_POST['login'])) {
 
     $email = $_POST['email'];
     $password = $_POST['password'];
 
-    if (isset($_SESSION['user'])) {
+    if (!isset($_SESSION['user'])) {
 
-        if (
-            $email === $_SESSION['user']['email'] &&
-            $password === $_SESSION['user']['password']
-        ) {
-            header("Location: dashboard.php");
-            exit();
-        } else {
-            echo "Invalid email or password.";
-        }
+        $error = "No Registered User Found.<br> Please Register First.";
+    } elseif (
+        $email === $_SESSION['user']['email'] &&
+        $password === $_SESSION['user']['password']
+    ) {
 
+        $_SESSION['logged_in'] = true;
+        header("Location: dashboard.php");
+        exit();
     } else {
-        echo "No registered user found.";
+
+        $error = "Invalid email or password.";
     }
 }
 
@@ -85,6 +88,12 @@ if (isset($_POST['login'])) {
                     <h2 style="margin-bottom: 20px; text-align: center;">
                         Login
                     </h2>
+
+                    <?php if (!empty($error)) : ?>
+                        <div style="color:rgb(220, 0, 0); text-align: center;">
+                            <?php echo $error; ?>
+                        </div>
+                    <?php endif; ?>
 
                     <form action="login.php" method="POST">
 
