@@ -5,3 +5,4 @@ session_destroy(); // destroys the session
 
 header("Location: index.html");
 exit();
+?>
