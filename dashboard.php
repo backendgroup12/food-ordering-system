@@ -56,7 +56,7 @@ switch (true) {
             <div class="navs">
                 <div>
                     <ul class="nav-list">
-                        <li><a href="./index.php">Home</a></li>
+                        <li><a href="./index.html">Home</a></li>
                         <li><a href="./dashboard.php">Dashboard</a></li>
                         <li><a href="#">Contact</a></li>
                         <li><a href="#">About</a></li>
