@@ -4,9 +4,12 @@ if (!isset($_SESSION['user'])) {
     header("Location: login.php");
     exit();
 }
+// Set timezone to Accra, Ghana
 date_default_timezone_set("Africa/Accra");
+
 $hour = date("H"); // gets current hour (00–23)
 
+// Determine greeting based on the hour of the day
 switch (true) {
 
     case ($hour < 12):
@@ -17,6 +20,7 @@ switch (true) {
         $greeting = "Good Afternoon";
         break;
 
+    // For hours 18 and above    
     default:
         $greeting = "Good Evening";
 }

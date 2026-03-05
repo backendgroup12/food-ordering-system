@@ -22,6 +22,15 @@ if (isset($_POST['register'])) {
         $tmp_img = $_FILES['profile_image']['tmp_name'];
         $upload_dir = 'uploads/';
 
+        // ✅ check file type
+        $allowed_types = ['jpg', 'jpeg', 'png'];
+        $file_extension = strtolower(pathinfo($img, PATHINFO_EXTENSION));
+
+        if (!in_array($file_extension, $allowed_types)) {
+            echo "Only JPG/JPEG and PNG files are allowed!";
+            exit();
+        }
+
         // Ensure the uploads directory exists
         $new_img_name = '';
         if (!empty($img) && !empty($tmp_img)) {
