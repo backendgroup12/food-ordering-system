@@ -11,7 +11,22 @@ The main function of the system is to simulate a basic online food ordering plat
 
 The application runs on a local server environment such as XAMPP or Apache. The user first opens the homepage, where they can navigate to the registration page to create an account. After registering, the user can log in using their email and password. Once authenticated, the system creates a session and redirects the user to a dashboard page where their information and profile image are displayed. The user can also log out, which destroys the session and returns them to the homepage.
 
+## Screenshots
 
+### Home Page
+![Home](screenshots/index.png)
+
+### Registration Page
+![Register](screenshots/register.png)
+
+### Dashboard
+![Dashboard](screenshots/dashboard.png)
+
+### Login Page
+![Login](screenshots/login.png)
+
+## Project Report
+[Project Report](report/mid_semester_project_report.pdf)
 
 
 ## Group Members
